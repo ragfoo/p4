@@ -41,7 +41,7 @@ class LensController extends Controller
      */
     public function create()
     {
-      $manufacturers = Manufacturer::all(['name', 'id']);
+      $manufacturers = Manufacturer::all();
 
 
       return view('lens.create')->with('manufacturers', $manufacturers);;
