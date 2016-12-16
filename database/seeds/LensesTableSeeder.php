@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Manufacturer;
 
 class LensesTableSeeder extends Seeder
 {
@@ -11,33 +12,36 @@ class LensesTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('lenses')->insert([
+
+      $manufacturer_id = Manufacturer::where('name','=','Voigtlander')->pluck('id')->first();
+
+      DB::table('lens')->insert([
           'created_at' => Carbon\Carbon::now()->toDateTimeString(),
           'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
           'model' => 'Nokton',
-          'manufacturer' => 'Voigtlander',
+          'manufacturer_id' => $manufacturer_id,
           'type' => 'Fixed',
           'mount' => 'Micro Four Thirds',
           'max_aperture' => .95,
           'focal_length' => 10.5,
       ]);
 
-      DB::table('lenses')->insert([
+      DB::table('lens')->insert([
           'created_at' => Carbon\Carbon::now()->toDateTimeString(),
           'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
           'model' => 'Nokton',
-          'manufacturer' => 'Voigtlander',
+          'manufacturer_id' => $manufacturer_id,
           'type' => 'Fixed',
           'mount' => 'Micro Four Thirds',
           'max_aperture' => .95,
           'focal_length' => 25,
       ]);
 
-      DB::table('lenses')->insert([
+      DB::table('lens')->insert([
           'created_at' => Carbon\Carbon::now()->toDateTimeString(),
           'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
           'model' => 'Nokton',
-          'manufacturer' => 'Voigtlander',
+          'manufacturer_id' => $manufacturer_id,
           'type' => 'Fixed',
           'mount' => 'Micro Four Thirds',
           'max_aperture' => .95,

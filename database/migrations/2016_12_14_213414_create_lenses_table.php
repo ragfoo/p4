@@ -13,7 +13,7 @@ class CreateLensesTable extends Migration
      */
     public function up()
     {
-      Schema::create('lenses', function (Blueprint $table) {
+      Schema::create('lens', function (Blueprint $table) {
 
           # Increments method will make a Primary, Auto-Incrementing field.
           # Most tables start off this way
@@ -43,6 +43,6 @@ class CreateLensesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('lenses');
+        Schema::drop('lens');
     }
 }
