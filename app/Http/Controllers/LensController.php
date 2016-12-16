@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lens;
+use App\Manufacturer;
 
 class LensController extends Controller
 {
@@ -16,6 +17,8 @@ class LensController extends Controller
     {
 
       return view('lens.index');
+
+
       $lenses = Lens::all();
 
       # Make sure we have results before trying to print them...
@@ -38,6 +41,10 @@ class LensController extends Controller
      */
     public function create()
     {
+      $manufacturers = Manufacturer::all(['name', 'id']);
+
+
+      return view('lens.create')->with('manufacturers', $manufacturers);;
       $lens = new Lens();
 
       # Set the parameters
