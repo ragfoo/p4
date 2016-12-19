@@ -13,6 +13,8 @@
 
 @section('content')
 <!-- Portfolio Item Row -->
+
+
 <div class="row">
 
     <div class="col-md-8">
@@ -50,7 +52,13 @@
 <form method='POST' action='/edit/{{$model->manufacturer->name}}/{{$model->longname}}'>
   {{ csrf_field() }}
     <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Edit" src="">
-@endif
 </form>
+<form method='POST' action='/lenses/{{$model->manufacturer->name}}/{{$model->longname}}'>
+  {{ method_field('DELETE') }}
+  {{ csrf_field() }}
+    <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Delete From Database" src="">
+</form>
+@endif
 </div>
+
 @stop

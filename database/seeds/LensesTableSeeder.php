@@ -92,10 +92,10 @@ class LensesTableSeeder extends Seeder
           'manufacturer_id' => $manufacturer_id,
           'type' => 'Fixed',
           'mount' => 'EF',
-          'max_aperture' => .95,
-          'focal_length' => 42.5,
+          'max_aperture' => 1.5,
+          'focal_length' => 85,
           'longname' => 'nokton_42.5f0.95',
-          'logo_url' => '/img/models/nokton/nokton_42.5mm.jpg',
+          'logo_url' => 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTovqY6_5vXpwT6lHSetgJuL3WTtwng9BseL3USzxULw3QzE0m-&usqp=CAY',
       ]);
 
 

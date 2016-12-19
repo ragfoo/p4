@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Lens;
 use App\Manufacturer;
+use Session;
 
 class LensController extends Controller
 {
@@ -197,8 +198,16 @@ class LensController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $brand,$longname)
     {
-        //
+        $lens_id = $request->input('model');
+        $lens = Lens::where('id','=',$lens_id)->first();
+        if (count($lens->users) > 0) {
+          Session::flash('flash_message','Lens Can not be deleted because it is in a collection.');
+          return back();
+        }else{
+          $lens->delete();
+        }
+        return redirect('lenses/'.$brand);
     }
 }

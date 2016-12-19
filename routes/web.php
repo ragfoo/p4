@@ -26,10 +26,7 @@ Route::post('/edit/{brand}/{model}', 'LensController@edit')->name('lenses.edit')
 Route::put('/lenses/{brand}/{model}', 'LensController@update')->name('lenses.update');
 Route::post('/lenses', 'LensController@store')->name('lenses.store');
 Route::post('/lenses/collection', 'LensController@updatecollection')->name('lenses.updatecollection');
-//Route::get('/lenses/{lens}', 'LensController@show')->name('lenses.show');
-//Route::get('/lenses/{lens}/edit', 'LensController@edit')->name('lenses.edit');
-//Route::put('/lenses/{lens}', 'LensController@update')->name('lenses.update');
-//Route::delete('/lenses/{lens}', 'LensController@destroy')->name('lenses.destroy');
+Route::delete('/lenses/{brand}/{model}', 'LensController@destroy')->name('lenses.destroy');
 
 
 Route::get('/debug', function() {

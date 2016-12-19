@@ -28,6 +28,7 @@
 
 <body>
 
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -88,6 +89,9 @@
                 </div>
             </div>
             <!-- /.row -->
+            @if(Session::has('flash_message'))
+            {{Session::get('flash_message')}}
+            @endif
         </footer>
 
     </div>
