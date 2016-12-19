@@ -60,5 +60,6 @@
 </form>
 @endif
 </div>
+</div>
 
 @stop
