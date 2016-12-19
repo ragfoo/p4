@@ -94,8 +94,6 @@
             @endif
         </footer>
 
-    </div>
-
     <!-- /.container -->
 
     <!-- jQuery -->
