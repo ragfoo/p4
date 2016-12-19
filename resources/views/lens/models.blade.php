@@ -54,7 +54,7 @@
         @endforeach
     </ul>
 @endif
-<form method='POST' action='/lenses/{{ $data['brand'] }}'>
+<form method='POST' action='/edit/{{ $data['brand'] }}'>
     {{ csrf_field() }}
     <div>
     <label for="model">Add a Model</label>

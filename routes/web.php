@@ -19,7 +19,7 @@ Route::get('/lenses', 'LensController@index')->name('lenses.index');
 Route::get('/lenses/brands', 'LensController@brands')->name('lenses.brands');
 Route::post('/lenses/brands', 'LensController@brands')->name('lenses.brands');
 Route::get('/lenses/{brand}', 'LensController@models')->name('lenses.models');
-Route::post('/lenses/{brand}', 'LensController@store')->name('lenses.store');
+Route::post('/edit/{brand}', 'LensController@store')->name('lenses.store');
 Route::get('/lenses/{brand}/{model}', 'LensController@details')->name('lenses.details');
 Route::get('/edit/{brand}/{model}', 'LensController@edit')->name('lenses.edit');
 Route::post('/edit/{brand}/{model}', 'LensController@edit')->name('lenses.edit');
