@@ -21,7 +21,11 @@
         <h3>
             <p align="center"> {{ $model->model." ".$model->focal_length."mm"." f/".$model->max_aperture }} </p>
         </h3>
-          <img class="img-responsive img-max" alt="W3Schools" src="{{$model->logo_url}}"></a>
+        @if ($model->logo_url)
+          <img class="img-responsive img-max" alt="" src="{{$model->logo_url}}"></a>
+        @else
+          <img class="img-responsive img-max" alt="" src= '/img/logos/camera-lens-icon.jpg'></a>
+        @endif
           <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Remove from Collection" src="">
       </article>
     @endforeach
