@@ -7,7 +7,7 @@
 A database for browsing camera lenses and tracking your personal lens collection
 
 ## Demo
-<https://www.youtube.com/watch?v=RoqrD9ZD0N4&feature=youtu.be>
+https://www.youtube.com/watch?v=J6k7dlV4gbw&feature=youtu.be
 
 ## Details for teaching team
 Name: Jill
