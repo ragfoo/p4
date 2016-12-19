@@ -65,6 +65,7 @@ class LensController extends Controller
 
   public function brands(Request $request)
   {
+
     if ($request->isMethod('post')) {
       # Validate the request data
       $this->validate($request, [
@@ -78,12 +79,25 @@ class LensController extends Controller
     }
 
     $manufacturers = Manufacturer::all();
-    return view('lens.brands')->with('manufacturers', $manufacturers);;
+    return view('lens.brands')->with('manufacturers', $manufacturers);
   }
 
   public function models($brand)
   {
-    echo $brand;
+    $brand_id = Manufacturer::where('name','=',$brand)->pluck('id')->first();
+    $models = Lens::where("manufacturer_id","=",$brand_id)->get();
+
+    $data = array(
+    'models'  => $models,
+    'brand'   => $brand,
+    );
+
+    return view('lens.models')->with('data', $data);
+  }
+
+  public function details($brand,$model)
+  {
+    echo $model;
   }
 
     /**
