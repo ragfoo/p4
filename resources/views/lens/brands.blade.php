@@ -1,4 +1,4 @@
-@extends('lens.master')
+@extends('master')
 
 
 @section('title')

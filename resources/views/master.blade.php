@@ -44,15 +44,20 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                  @if(Auth::check())
                     <li>
-                        <a href="#">Add a Lens</a>
+                        <a href="#">My Lens Collection</a>
                     </li>
+                    @endif
                     <li>
-                        <a href="#">Services</a>
+                        <a href="/lenses/brands">Browse Lenses</a>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                    @if(Auth::check())
+                    <li><a href='/logout'>Log out</a></li>
+                    @else
+                    <li><a href='/login'>Log in</a></li>
+                    <li><a href='/register'>Register</a></li>
+                    @endif
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
