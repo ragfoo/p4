@@ -1,4 +1,11 @@
-@extends('layouts.app')
+@extends('master')
+
+@section('title')
+Log In
+@stop
+@section('subtitle')
+@stop
+
 
 @section('content')
 <div class="container">

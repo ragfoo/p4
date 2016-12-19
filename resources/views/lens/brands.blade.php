@@ -2,9 +2,11 @@
 
 
 @section('title')
-    Add Lens
+    Brands
 @stop
 
+@section('subtitle')
+@stop
 
 
 @section('content')
@@ -31,8 +33,10 @@
 @stop
 
 @section('footer')
+@if(Auth::check())
+<div align="center">
 @if($errors->get('brand'))
-    <ul  class="brand-input">
+    <ul>
         @foreach($errors->get('brand') as $error)
             <li>{{ $error }}</li>
         @endforeach
@@ -40,10 +44,11 @@
 @endif
 <form method='POST' action='/lenses/brands'>
     {{ csrf_field() }}
-    <label for="manufacturer" class="brand-input">Add a Brand</label>
-    <input class="brand-input" type="text" placeholder="Brand Name" name="brand">
-    <input class="brand-input" type="text" placeholder="Logo URL" name="logo_url">
-    <input type="submit" class="brand-input" value="Submit">
+    <label for="manufacturer" >Add a Brand</label>
+    <input type="text" placeholder="Brand Name" name="brand">
+    <input type="text" placeholder="Logo URL" name="logo_url">
+    <input type="submit" value="Submit">
 </form>
-
+</div>
+@endif
 @stop

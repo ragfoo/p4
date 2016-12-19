@@ -2,7 +2,11 @@
 
 
 @section('title')
-    Show Lens
+    {{$model->model." ".$model->focal_length."mm f/".$model->max_aperture}}
+@stop
+
+@section('subtitle')
+    <a href="/lenses/{{$model->manufacturer->name}}"> {{$model->manufacturer->name}} </a>
 @stop
 
 
@@ -12,18 +16,19 @@
 <div class="row">
 
     <div class="col-md-8">
-        <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+        <img class="img-responsive" src="{{$model->logo_url}}" alt="">
     </div>
 
     <div class="col-md-4">
-        <h3>Project Description</h3>
+        <h3>Product Description</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-        <h3>Project Details</h3>
+        <h3>Specs</h3>
         <ul>
-            <li>Lorem Ipsum</li>
-            <li>Dolor Sit Amet</li>
-            <li>Consectetur</li>
-            <li>Adipiscing Elit</li>
+            <li>Focal Length:{{$model->focal_length}}</li>
+            <li>Max Aperture:{{$model->max_aperture}}</li>
+            <li>Mount:{{$model->mount}}</li>
+            <li>Blade Elements:{{ $model->blades }}</li>
+            <li>Weight:{{ $model->weight }}</li>
         </ul>
     </div>
 
@@ -32,34 +37,20 @@
 
 <!-- Related Projects Row -->
 <div class="row">
+@if(Auth::check())
+  <form method='POST' action='/lenses/collection'>
+    {{ csrf_field() }}
 
-    <div class="col-lg-12">
-        <h3 class="page-header">Related Projects</h3>
-    </div>
-
-    <div class="col-sm-3 col-xs-6">
-        <a href="#">
-            <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-        </a>
-    </div>
-
-    <div class="col-sm-3 col-xs-6">
-        <a href="#">
-            <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-        </a>
-    </div>
-
-    <div class="col-sm-3 col-xs-6">
-        <a href="#">
-            <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-        </a>
-    </div>
-
-    <div class="col-sm-3 col-xs-6">
-        <a href="#">
-            <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-        </a>
-    </div>
-
+    @if($model->users->contains(Auth::user()->id))
+      <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Remove from Collection" src="">
+    @else
+      <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Add to Collection" src="">
+    @endif
+</form>
+<form method='POST' action='/edit/{{$model->manufacturer->name}}/{{$model->longname}}'>
+  {{ csrf_field() }}
+    <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Edit" src="">
+@endif
+</form>
 </div>
 @stop

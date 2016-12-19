@@ -5,7 +5,8 @@
     {{ $data['brand'] }}
 @stop
 
-
+@section('subtitle')
+@stop
 
 
 
@@ -20,7 +21,11 @@
         <h3>
             <p align="center"> {{ $model->model." ".$model->focal_length."mm"." f/".$model->max_aperture }} </p>
         </h3>
-          <img class="img-responsive img-max" alt="W3Schools" src= '/img/logos/camera-lens-icon.jpg'></a>
+        @if ($model->logo_url)
+          <img class="img-responsive img-max" alt="" src="{{$model->logo_url}}"></a>
+        @else
+          <img class="img-responsive img-max" alt="" src= '/img/logos/camera-lens-icon.jpg'></a>
+        @endif
           @if(Auth::check())
             @if($model->users->contains(Auth::user()->id))
               <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Remove from Collection" src="">
@@ -40,23 +45,47 @@
 @stop
 
 @section('footer')
-@if($errors->get('brand'))
-    <ul  class="brand-input">
-        @foreach($errors->get('brand') as $error)
+@if(Auth::check())
+<div align="center">
+@if($errors->all())
+    <ul>
+        @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
         @endforeach
     </ul>
 @endif
-<form method='POST' action='/store'>
+<form method='POST' action='/lenses/{{ $data['brand'] }}'>
     {{ csrf_field() }}
-    <label for="model" class="brand-input">Add a Model</label>
-    <input class="brand-input" type="text" placeholder="Model Name" name="model">
-    <input class="brand-input" type="text" placeholder="Focal Length" name="focal_length">
-    <input class="brand-input" type="text" placeholder="Max Aperture" name="max_aperture">
-    <input class="brand-input" type="text" placeholder="Type" name="type">
-    <input class="brand-input" type="text" placeholder="Mount" name="mount">
-    <input class="brand-input" type="text" placeholder="Logo URL" name="logo_url">
-    <input type="submit" class="brand-input" value="Cool">
+    <div>
+    <label for="model">Add a Model</label>
+    <input type="text" placeholder="Model Name" name="model">
+    </div>
+    <div>
+    <label for="focal_length">Focal Length</label>
+    <input type="text" placeholder="Focal Length" onkeypress="return isValidFloat(event)" name="focal_length">
+    </div>
+    <div>
+    <label for="max_aperture">Aperture</label>
+    <input type="text" placeholder="Max Aperture" onkeypress="return isValidFloat(event)" name="max_aperture">
+    </div>
+    <div>
+    <label for="mount">Mount</label>
+    <input type="text" placeholder="Mount" name="mount">
+    </div>
+    <div>
+    <label for="logo_url">Logo URL</label>
+    <input type="text" placeholder="Logo URL" name="logo_url">
+    </div>
+    <div>
+    <input type="submit" value="Submit">
 </form>
+</div>
+@endif
+<script>
 
+function isValidFloat(evt){
+  return evt.charCode >= 48 && event.charCode <= 57 || (event.charCode == 46 && evt.srcElement.value.split('.').length<2);
+}
+
+</script>
 @stop

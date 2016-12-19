@@ -24,6 +24,8 @@ class LensesTableSeeder extends Seeder
           'mount' => 'Micro Four Thirds',
           'max_aperture' => .95,
           'focal_length' => 10.5,
+          'longname' => 'nokton_10.5f0.95',
+          'logo_url' => '/img/models/nokton/nokton_10.5mm.jpg',
       ]);
 
       DB::table('lens')->insert([
@@ -35,6 +37,8 @@ class LensesTableSeeder extends Seeder
           'mount' => 'Micro Four Thirds',
           'max_aperture' => .95,
           'focal_length' => 25,
+          'longname' => 'nokton_25f0.95',
+          'logo_url' => '/img/models/nokton/nokton_25mm.jpg',
       ]);
 
       DB::table('lens')->insert([
@@ -46,6 +50,8 @@ class LensesTableSeeder extends Seeder
           'mount' => 'Micro Four Thirds',
           'max_aperture' => .95,
           'focal_length' => 42.5,
+          'longname' => 'nokton_42.5f0.95',
+          'logo_url' => '/img/models/nokton/nokton_42.5mm.jpg',
       ]);
     }
 }

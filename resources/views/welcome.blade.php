@@ -12,7 +12,7 @@
 @section('content')
   <!-- Feature Row -->
   <div class="row">
-  Welcome to Glass Hub. A Place to Browse Lenses.
+  Welcome to Glass Hub. A Place to Browse Lenses. Login to add lenses to the database and keep track of your personal collection.
   </div>
 
   <!-- /.row -->

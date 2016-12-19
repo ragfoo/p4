@@ -22,14 +22,17 @@ class CreateLensesTable extends Migration
           $table->timestamps();
 
           $table->string('model');
-          $table->string('type');
+          $table->string('type')->nullable();
           $table->string('mount');
           $table->float('max_aperture');
           $table->float('focal_length');
           $table->float('front_lens_diameter')->nullable();
           $table->integer('year')->nullable();
+          $table->integer('blades')->nullable();
           $table->float('weight')->nullable();
           $table->float('min_object_distance')->nullable();
+          $table->string('longname')->nullable();
+          $table->string('logo_url')->nullable();
 
 
       });

@@ -81,10 +81,13 @@ class LensController extends Controller
     return view('lens.models')->with('data', $data);
   }
 
-  public function details($brand,$model)
+  public function details($brand, $longname)
   {
-    echo $model;
+    $model = Lens::where("longname","=",$longname)->first();
+    return view('lens.show')->with('model', $model);
   }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -92,9 +95,26 @@ class LensController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$brand)
     {
-        echo $request->input('manufacturer');
+      $this->validate($request, [
+          'model' => 'required|min:1|string',
+          'focal_length' => 'required|min:1|numeric',
+          'max_aperture' => 'required|min:0|numeric',
+          'mount' => 'required|string',
+          'logo_url' => 'min:1|string',
+      ]);
+      $manufacturer_id = Manufacturer::where('name','=',$brand)->pluck('id')->first();
+      $model = new Lens();
+      $model->model = $request->input('model');
+      $model->manufacturer_id = $manufacturer_id;
+      $model->focal_length = $request->input('focal_length');
+      $model->max_aperture = $request->input('max_aperture');
+      $model->mount = $request->input('mount');
+      $model->logo_url = $request->input('logo_url');
+      $model->longname = $model->model."_".$model->focal_length."f".$model->max_aperture;
+      $model->save();
+      return redirect('lenses/'.$brand);
     }
 
     /**
@@ -133,10 +153,11 @@ class LensController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+     public function edit($brand, $longname)
+     {
+       $model = Lens::where("longname","=",$longname)->first();
+       return view('lens.edit')->with('model', $model);
+     }
 
     /**
      * Update the specified resource in storage.
@@ -145,9 +166,29 @@ class LensController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $brand,$longname)
     {
-        //
+        $this->validate($request, [
+            'model' => 'required|min:1|string',
+            'focal_length' => 'required|min:1|numeric',
+            'blades' => 'min:0|integer',
+            'weight' => 'min:0|numeric',
+            'max_aperture' => 'required|min:0|numeric',
+            'mount' => 'required|string',
+            'logo_url' => 'required|min:1|string',
+        ]);
+        $model = Lens::where("longname","=",$longname)->first();
+        $model->model = $request->input('model');
+        $model->focal_length = $request->input('focal_length');
+        $model->blades = intval($request->input('blades'));
+        $model->max_aperture = $request->input('max_aperture');
+        $model->weight = floatval($request->input('weight'));
+        $model->mount = $request->input('mount');
+        $model->logo_url = $request->input('logo_url');
+        $model->longname = $model->model."_".$model->focal_length."f".$model->max_aperture;
+        $model->save();
+        return redirect('lenses/'.$brand.'/'.$model->longname);
+        return view('lens.show')->with('model', $model);
     }
 
     /**
