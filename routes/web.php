@@ -16,12 +16,14 @@ Route::get('/', function () {
 });
 
 Route::get('/lenses', 'LensController@index')->name('lenses.index');
-Route::get('/lenses/create', 'LensController@create')->name('lenses.create');
+Route::get('/lenses/brands', 'LensController@brands')->name('lenses.brands');
+Route::post('/lenses/brands', 'LensController@brands')->name('lenses.brands');
+Route::get('/lenses/{brand}', 'LensController@models')->name('lenses.models');
 Route::post('/lenses', 'LensController@store')->name('lenses.store');
-Route::get('/lenses/{lens}', 'LensController@show')->name('lenses.show');
-Route::get('/lenses/{lens}/edit', 'LensController@edit')->name('lenses.edit');
-Route::put('/lenses/{lens}', 'LensController@update')->name('lenses.update');
-Route::delete('/lenses/{lens}', 'LensController@destroy')->name('lenses.destroy');
+//Route::get('/lenses/{lens}', 'LensController@show')->name('lenses.show');
+//Route::get('/lenses/{lens}/edit', 'LensController@edit')->name('lenses.edit');
+//Route::put('/lenses/{lens}', 'LensController@update')->name('lenses.update');
+//Route::delete('/lenses/{lens}', 'LensController@destroy')->name('lenses.destroy');
 
 
 Route::get('/debug', function() {

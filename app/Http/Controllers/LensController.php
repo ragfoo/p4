@@ -63,6 +63,28 @@ class LensController extends Controller
       echo 'Added: '.$lens->model;
   }
 
+  public function brands(Request $request)
+  {
+    if ($request->isMethod('post')) {
+      # Validate the request data
+      $this->validate($request, [
+          'brand' => 'required|min:1|unique:manufacturers,name',
+      ]);
+      $manufacturer = new Manufacturer();
+      $manufacturer->name = $request->input("brand");
+      $logo_url = $request->input("logo_url");
+      $manufacturer->logo = $request->input("logo_url");
+      $manufacturer->save();
+    }
+
+    $manufacturers = Manufacturer::all();
+    return view('lens.brands')->with('manufacturers', $manufacturers);;
+  }
+
+  public function models($brand)
+  {
+    echo $brand;
+  }
 
     /**
      * Store a newly created resource in storage.
@@ -72,7 +94,7 @@ class LensController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo $request->input('manufacturer');
     }
 
     /**

@@ -77,15 +77,16 @@
 
         <!-- Footer -->
         <footer>
+          @yield('footer')
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Ryan Gallagher 2016</p>
                 </div>
             </div>
             <!-- /.row -->
         </footer>
 
     </div>
+
     <!-- /.container -->
 
     <!-- jQuery -->
