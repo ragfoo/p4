@@ -13,25 +13,11 @@ class LensController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-      return view('lens.index');
+      return view('lens.collection')->with('user', $request->user());
 
-
-      $lenses = Lens::all();
-
-      # Make sure we have results before trying to print them...
-      if(!$lenses->isEmpty()) {
-
-          # Output the books
-          foreach($lenses as $lens) {
-              echo $lens->model.'<br>';
-          }
-      }
-      else {
-          echo 'No lenses found';
-      }
     }
 
     /**
@@ -109,6 +95,24 @@ class LensController extends Controller
     public function store(Request $request)
     {
         echo $request->input('manufacturer');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updatecollection(Request $request)
+    {
+        $lens_id = $request->input('model');
+        $lens = Lens::where('id','=',$lens_id)->first();
+        if ($request->user()->lenses->contains($lens_id)){
+          $request->user()->lenses()->detach($lens_id);
+        }else{
+          $request->user()->lenses()->save($lens);
+        }
+        return back();
     }
 
     /**

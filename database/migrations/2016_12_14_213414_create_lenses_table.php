@@ -22,7 +22,6 @@ class CreateLensesTable extends Migration
           $table->timestamps();
 
           $table->string('model');
-          $table->string('manufacturer')->nullable();
           $table->string('type');
           $table->string('mount');
           $table->float('max_aperture');

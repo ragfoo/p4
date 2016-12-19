@@ -7,10 +7,13 @@
 
 
 
+
+
 @section('content')
   <!-- Feature Row -->
   <div class="row">
   <form method='POST' action='/lenses/collection'>
+    {{ csrf_field() }}
     @foreach ($data['models'] as $model)
       <article class="col-md-4 article-intro">
         <a href= "{{ $data['brand'] }}/{{strtolower($model->model.'_'.$model->focal_length.'f'.$model->max_aperture)}}">
@@ -18,7 +21,13 @@
             <p align="center"> {{ $model->model." ".$model->focal_length."mm"." f/".$model->max_aperture }} </p>
         </h3>
           <img class="img-responsive img-max" alt="W3Schools" src= '/img/logos/camera-lens-icon.jpg'></a>
-          <input class="img-responsive img-max" type="image" name="thing" value="thing" alt="thing" src="">
+          @if(Auth::check())
+            @if($model->users->contains(Auth::user()->id))
+              <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Remove from Collection" src="">
+            @else
+              <input class="img-responsive img-max" type="image" name="model" value= {{ $model->id }} alt="Add to Collection" src="">
+            @endif
+          @endif
       </article>
     @endforeach
   </form>

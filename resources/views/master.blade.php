@@ -46,7 +46,7 @@
                 <ul class="nav navbar-nav">
                   @if(Auth::check())
                     <li>
-                        <a href="#">My Lens Collection</a>
+                        <a href="/lenses/">My Lens Collection</a>
                     </li>
                     @endif
                     <li>
