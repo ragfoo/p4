@@ -15,7 +15,7 @@
     @foreach ($manufacturers as $manufacturer)
       <article class="col-md-4 article-intro">
         <a href="/lenses/{{strtolower($manufacturer->name)}}">
-            <h3 align="center"> {{ $manufacturer->name }} </h3>
+            <h3 > {{ $manufacturer->name }} </h3>
         @if ($manufacturer->logo)
           <img class="img-responsive img-max" alt="W3Schools" src= {{ $manufacturer->logo }}></a>
         @else
